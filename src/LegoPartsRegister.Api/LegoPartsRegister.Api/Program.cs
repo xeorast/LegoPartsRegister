@@ -1,3 +1,5 @@
+global using LegoPartsRegister.Api.Services;
+
 using LegoPartsRegister.Data;
 
 var builder = WebApplication.CreateBuilder( args );
@@ -11,10 +13,12 @@ _ = builder.Services.AddSwaggerGen();
 
 
 _ = builder.Services.AddNpgsql<AppDbContext>(
-	builder.Configuration.GetConnectionString( "postgresConnection" ), 
-	  pgob => pgob.MigrationsAssembly( "LegoPartsRegister.Migrations.Pg" ), 
+	builder.Configuration.GetConnectionString( "postgresConnection" ),
+	  pgob => pgob.MigrationsAssembly( "LegoPartsRegister.Migrations.Pg" ),
 	  ob => ob.UseLoggerFactory( LoggerFactory.Create( factoryBuilder => factoryBuilder.AddConsole() ) )
 	);
+
+_ = builder.Services.AddScoped<IUsersService, UsersService>();
 
 
 var app = builder.Build();
