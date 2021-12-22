@@ -4,10 +4,22 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>fcb33997-e673-473d-95ed-6ab1723dad0f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="microsoft.entityframeworkcore" Version="6.0.1" />
+    <PackageReference Include="microsoft.entityframeworkcore.tools" Version="6.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="npgsql.entityframeworkcore.postgresql" Version="6.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LegoPartsRegister.Data\LegoPartsRegister.Data.csproj" />
+    <ProjectReference Include="..\LegoPartsRegister.Migrations.Pg\LegoPartsRegister.Migrations.Pg.csproj" />
   </ItemGroup>
 
 </Project>
