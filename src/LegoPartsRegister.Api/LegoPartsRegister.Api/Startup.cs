@@ -1,4 +1,7 @@
-﻿using LegoPartsRegister.Data;
+﻿//#define postgres
+#define mssql
+
+using LegoPartsRegister.Data;
 
 namespace LegoPartsRegister.Api;
 
@@ -13,11 +16,23 @@ public static class Startup
 		_ = builder.Services.AddSwaggerGen();
 
 
+		#region db
+#if postgres
 		_ = builder.Services.AddNpgsql<AppDbContext>(
 			builder.Configuration.GetConnectionString( "postgresConnection" ),
 			  pgob => pgob.MigrationsAssembly( "LegoPartsRegister.Migrations.Pg" ),
 			  ob => ob.UseLoggerFactory( LoggerFactory.Create( factoryBuilder => factoryBuilder.AddConsole() ) )
 			);
+#elif mssql
+		_ = builder.Services.AddSqlServer<AppDbContext>(
+			builder.Configuration.GetConnectionString( "mssqlConnection" ),
+			  ssob => ssob.MigrationsAssembly( "LegoPartsRegister.Migrations.MsSql" ),
+			  ob => ob.UseLoggerFactory( LoggerFactory.Create( factoryBuilder => factoryBuilder.AddConsole() ) )
+			);
+#else
+#error no database defined.
+#endif
+		#endregion
 
 		_ = builder.Services.AddScoped<IUsersService, UsersService>();
 
