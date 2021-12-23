@@ -9,8 +9,10 @@ public class AppDbContext : DbContext
 		: base( options )
 	{
 		ArgumentNullException.ThrowIfNull( Users );
+		ArgumentNullException.ThrowIfNull( Parts );
 	}
 
 	public DbSet<UserModel> Users { get; set; }
+	public DbSet<PartModel> Parts { get; set; }
 
 }
