@@ -35,6 +35,7 @@ public static class Startup
 		#endregion
 
 		_ = builder.Services.AddScoped<IUsersService, UsersService>();
+		_ = builder.Services.AddScoped<IPartsService, PartsService>();
 
 	}
 
