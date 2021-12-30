@@ -36,6 +36,8 @@ public static class Startup
 
 		_ = builder.Services.AddScoped<IUsersService, UsersService>();
 		_ = builder.Services.AddScoped<IPartsService, PartsService>();
+		_ = builder.Services.AddScoped<IColorsService, ColorsService>();
+		_ = builder.Services.AddScoped<IElementsService, ElementsService>();
 
 	}
 

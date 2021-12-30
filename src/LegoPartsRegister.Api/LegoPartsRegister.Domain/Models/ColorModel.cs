@@ -1,5 +1,6 @@
 ﻿using LegoPartsRegister.Domain.Relations;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace LegoPartsRegister.Domain.Models;
 
@@ -14,7 +15,11 @@ public class ColorModel
 	}
 
 	public int Id { get; set; }
+
+	[StringLength( 64 )]
 	public string Name { get; set; }
+
+	[StringLength( 6, MinimumLength = 6 )]
 	public string HexValue { get; set; }
 	public bool IsTrans { get; set; }
 
